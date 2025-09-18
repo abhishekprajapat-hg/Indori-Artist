@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
@@ -13,7 +13,7 @@ import CategoryGrid from "./pages/CategoryGrid";
 function App() {
   return (
     <AuthProvider>
-      <HashRouter>
+      
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,8 +24,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/artist/:id" element={<ArtistDetail />} />
         </Routes>
-        <Footer />
-      </HashRouter>
+      <Footer />
     </AuthProvider>
   );
 }
