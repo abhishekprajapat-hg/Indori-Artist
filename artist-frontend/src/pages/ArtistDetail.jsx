@@ -13,7 +13,7 @@ export default function ArtistDetailPage() {
       setError(null);
 
       try {
-        const res = await fetch(`http://localhost:5000/api/artists/${id}`);
+        const res = await fetch(`https://indori-singers.onrender.com/api/artists/${id}`);
 
         if (!res.ok) {
           const text = await res.text();
