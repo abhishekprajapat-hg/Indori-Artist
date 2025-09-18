@@ -1,0 +1,32 @@
+export const artists = [
+  {
+    id: "a1",
+    name: "Amaan Khan",
+    category: "Singer",
+    location: "Mumbai",
+    price: 25000,
+    image: "https://picsum.photos/seed/a1/600/400",
+    bio: "Energetic playback singer with experience in live events.",
+    rating: 4.7,
+  },
+  {
+    id: "a2",
+    name: "Rhea Singh",
+    category: "DJ",
+    location: "Bengaluru",
+    price: 18000,
+    image: "https://picsum.photos/seed/a2/600/400",
+    bio: "Club & wedding DJ, specialises in electronic and Bollywood remixes.",
+    rating: 4.5,
+  },
+  {
+    id: "a3",
+    name: "The Gatha Band",
+    category: "Band",
+    location: "Delhi",
+    price: 40000,
+    image: "https://picsum.photos/seed/a3/600/400",
+    bio: "Five-piece band for corporate and private events.",
+    rating: 4.9,
+  },
+];

@@ -1,0 +1,59 @@
+import { Link } from "react-router-dom";
+
+const categories = [
+  { name: "Sufi Band", slug: "sufi-band", image: "/images/sufi.webp" },
+  { name: "Singer", slug: "singer", image: "/images/singer.png" },
+  { name: "DJ", slug: "dj", image: "/images/dj.png" },
+  { name: "Rapper", slug: "rapper", image: "/images/dancer.png" },
+  { name: "Live Band", slug: "band", image: "/images/live-band.png" },
+  { name: "Anchor/Emcee", slug: "anchor", image: "/images/anchor.png" },
+  { name: "Kirtan Singer", slug: "kirtan-singer", image: "/images/kirtan.png" },
+  {
+    name: "Instrumentalist",
+    slug: "instrumentalist",
+    image: "/images/instrumentalist.png",
+  },
+   { name: "All Categories", slug:"all", image: "./images/dj.png" },
+];
+
+export default function HomePage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <section className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center rounded-2xl shadow-lg">
+        <h1 className="text-4xl font-extrabold mb-4">
+          Find & Book Your Favorite Artists 🎶
+        </h1>
+        <p className="text-lg opacity-90 mb-6">
+          Singers, DJs, Rappers, Bands, Anchors & more – all in one place.
+        </p>
+        <Link
+          to="/categories"
+          className="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-lg shadow hover:bg-gray-100 transition"
+        >
+          Explore Artists
+        </Link>
+      </section>
+
+      <h1 className="text-3xl font-bold text-center mb-8 mt-8">Category</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {categories.map((cat) => (
+          <Link
+            to={`/category/${cat.slug}`}
+            key={cat.slug}
+            className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition"
+          >
+            <img
+              src={cat.image}
+              alt={cat.name}
+              className="w-full h-64 object-cover group-hover:scale-105 transition duration-500"
+            />
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+              <h2 className="text-white text-2xl font-bold">{cat.name}</h2>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
