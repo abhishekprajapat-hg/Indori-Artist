@@ -15,8 +15,8 @@ export default function CategoryPage() {
       try {
         const url =
           id === "all"
-            ? "http://localhost:5000/api/artists"
-            : `http://localhost:5000/api/artists?category=${id}`;
+            ? "https://indori-singers.onrender.com/api/artists"
+            : `https://indori-singers.onrender.com/api/artists?category=${id}`;
 
         console.log("Fetching artists from:", url);
 
