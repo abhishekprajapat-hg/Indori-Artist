@@ -13,8 +13,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-app.use(express.json());
+app.use(
+  cors({
+    origin: ["http://indorisingers.com", "https://indorisingers.com"], // allow your domain
+    credentials: true,
+  })
+);
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -36,4 +40,3 @@ mongoose
   .catch((err) => {
     console.error("❌ DB connection error:", err);
   });
-
