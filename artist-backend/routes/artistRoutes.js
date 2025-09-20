@@ -1,5 +1,5 @@
 import express from "express";
-import Artist from "../models/artist.js";
+import Artist from "../models/Artist.js";
 
 const router = express.Router();
 
