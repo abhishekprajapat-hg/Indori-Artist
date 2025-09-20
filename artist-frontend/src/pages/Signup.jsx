@@ -22,7 +22,7 @@ export default function Signup() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", form);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, form);
       // Pass userId to OTP page
       navigate("/verify-otp", { state: { userId: res.data.userId } });
     } catch (err) {

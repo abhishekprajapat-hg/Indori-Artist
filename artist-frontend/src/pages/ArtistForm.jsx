@@ -54,7 +54,7 @@ export default function ArtistForm() {
         videos: videoUrls,
       };
 
-      const res = await fetch("http://localhost:5000/api/artists", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/artists`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(artistData),

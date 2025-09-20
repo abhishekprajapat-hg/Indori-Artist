@@ -16,7 +16,7 @@ export default function ArtistDetailPage() {
       setError(null);
 
       try {
-        const res = await fetch(`http://localhost:5000/api/artists/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/artists/${id}`);
 
         if (!res.ok) {
           const text = await res.text();

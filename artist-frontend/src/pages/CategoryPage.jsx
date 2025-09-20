@@ -15,8 +15,8 @@ export default function CategoryPage() {
       try {
         const url =
           id === "all"
-            ? "http://localhost:5000/api/artists"
-            : `http://localhost:5000/api/artists?category=${id}`;
+            ? `${import.meta.env.VITE_API_URL}/artists`
+            : `${import.meta.env.VITE_API_URL}/artists?category=${id}`;
 
         const res = await fetch(url);
 

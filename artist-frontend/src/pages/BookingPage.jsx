@@ -18,7 +18,7 @@ export default function BookingPage() {
     const fetchArtist = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/artists/${artistId}`
+          `${import.meta.env.VITE_API_URL}/artists/${artistId}`
         );
         const data = await res.json();
         setArtist(data);
@@ -34,7 +34,7 @@ export default function BookingPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:5000/api/bookings/${artist._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/bookings/${artist._id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
