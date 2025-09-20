@@ -55,7 +55,7 @@ export default function CategoryPage() {
           <Link
             key={artist._id}
             to={`/artist/${artist._id}`}
-            className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300 shadow rounded-lg p-4 hover:shadow-lg transition"
+            className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white duration-300 shadow rounded-lg p-4 hover:shadow-lg transition"
           >
             <img
               src={artist.image}
