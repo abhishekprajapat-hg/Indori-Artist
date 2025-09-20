@@ -1,7 +1,7 @@
 import express from "express";
 import Booking from "../models/Booking.js";
 import Admin from "../models/Admin.js";
-import Artist from "../models/Artist.js";   // ✅ import Artist model
+import Artist from "../models/artist.js";   // ✅ import Artist model
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { protectAdmin } from "../middleware/adminAuth.js"; // ✅ for protection
