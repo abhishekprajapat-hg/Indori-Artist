@@ -1,4 +1,4 @@
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
@@ -9,11 +9,14 @@ import { AuthProvider } from "./context/AuthContext";
 import ArtistDetail from "./pages/ArtistDetail";
 import Footer from "./components/Footer";
 import CategoryGrid from "./pages/CategoryGrid";
+import BookingPage from "./pages/BookingPage";
+import AdminLogin from "./admin/pages/AdminLogin";
+import AdminDashboard from "./admin/pages/AdminDashboard";
 
 function App() {
   return (
     <AuthProvider>
-      
+      <div className="min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -23,8 +26,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/artist/:id" element={<ArtistDetail />} />
+          <Route path="/booking/:artistId" element={<BookingPage />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
-      <Footer />
+
+        <Footer />
+      </div>
     </AuthProvider>
   );
 }

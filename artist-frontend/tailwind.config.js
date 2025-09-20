@@ -1,15 +1,13 @@
 // tailwind.config.js
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          DEFAULT: "#1E3A8A", // deep blue
-          light: "#3B82F6",   // bright blue
-          dark: "#1E40AF",    // navy blue
-        },
-        accent: "#60A5FA", // lighter blue
+      backgroundImage: {
+        "light-gradient":
+          "linear-gradient(to right, #9bf8f4, #6f7bf7)", // light stylish gradient
+        "dark-gradient": "linear-gradient(to right, #000328, #000000)", // dark stylish gradient
       },
     },
   },

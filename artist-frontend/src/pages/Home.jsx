@@ -8,17 +8,14 @@ const categories = [
   { name: "Live Band", slug: "band", image: "/images/live-band.png" },
   { name: "Anchor/Emcee", slug: "anchor", image: "/images/anchor.png" },
   { name: "Kirtan Singer", slug: "kirtan-singer", image: "/images/kirtan.png" },
-  {
-    name: "Instrumentalist",
-    slug: "instrumentalist",
-    image: "/images/instrumentalist.png",
-  },
-   { name: "All Categories", slug:"all", image: "./images/dj.png" },
+  { name: "Instrumentalist", slug: "instrumentalist", image: "/images/instrumentalist.png" },
+  { name: "All Categories", slug: "all", image: "/images/dj.png" },
 ];
 
 export default function HomePage() {
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center rounded-2xl shadow-lg">
         <h1 className="text-4xl font-extrabold mb-4">
           Find & Book Your Favorite Artists 🎶
@@ -34,6 +31,7 @@ export default function HomePage() {
         </Link>
       </section>
 
+      {/* Category Section */}
       <h1 className="text-3xl font-bold text-center mb-8 mt-8">Category</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -41,15 +39,20 @@ export default function HomePage() {
           <Link
             to={`/category/${cat.slug}`}
             key={cat.slug}
-            className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition"
+            className="rounded-2xl shadow-lg hover:shadow-xl transition bg-white dark:bg-gray-900"
           >
+            {/* Image */}
             <img
               src={cat.image}
               alt={cat.name}
-              className="w-full h-64 object-cover group-hover:scale-105 transition duration-500"
+              className="w-full h-64 object-cover rounded-t-2xl"
             />
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-              <h2 className="text-white text-2xl font-bold">{cat.name}</h2>
+            
+            {/* Name always visible */}
+            <div className="p-4 text-center">
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                {cat.name}
+              </h2>
             </div>
           </Link>
         ))}

@@ -2,83 +2,84 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import logo from "../assets/Logo.png";
-
-const categories = [
-  { name: "Singer", slug: "singer" },
-  { name: "DJ", slug: "dj" },
-  { name: "Dancer", slug: "dancer" },
-  { name: "Live Band", slug: "band" },
-  { name: "Anchor/Emcee", slug: "anchor" },
-  { name: "Sufi Band", slug: "sufi-band" },
-  { name: "Kirtan Singer", slug: "kirtan-singer" },
-  { name: "Instrumentalist", slug: "instrumentalist" },
-];
+import { useTheme } from "../context/ThemeContext";
+import { Moon, Sun, LogIn, UserPlus, LogOut, PlusCircle } from "lucide-react";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
 
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <nav className="bg-[#70d6ff] text-white shadow">
+    <nav className="bg-light-gradient text-black shadow dark:bg-dark-gradient dark:text-white transition-colors duration-300">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo + Name */}
         <Link to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="h-20 w-20" />
+          <img src={logo} alt="Logo" className="h-16 w-16" />
           <span className="font-bold text-xl">Indori Singers</span>
         </Link>
 
-        {/* Links */}
+        {/* Right Section */}
         <div className="flex items-center space-x-6">
-          {/* Categories Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="hover:underline"
-            >
-              Categories
-            </button>
-
-            {isDropdownOpen && (
-              <div className="absolute bg-white text-black rounded shadow mt-2 w-48">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    to={`/category/${cat.slug}`}
-                    className="block px-4 py-2 hover:bg-gray-100"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Auth Links */}
           {!user ? (
             <>
-              <Link to="/login" className="hover:underline">
-                Login
+              {/* Login Icon with Tooltip */}
+              <Link to="/login" className="relative group">
+                <LogIn size={22} className="cursor-pointer" />
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                  Login
+                </span>
               </Link>
-              <Link to="/signup" className="hover:underline">
-                Signup
+
+              {/* Signup Icon with Tooltip */}
+              <Link to="/signup" className="relative group">
+                <UserPlus size={22} className="cursor-pointer" />
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                  Signup
+                </span>
               </Link>
             </>
           ) : (
             <>
-              {/* Add Artist Button (only visible when logged in) */}
-              <Link
-                to="/add-artist"
-                className="bg-white text-[#70d6ff] px-3 py-1 rounded font-semibold hover:bg-gray-100"
-              >
-                + Add Artist
-              </Link>
+              {/* Add Artist */}
+              
 
-              <button onClick={logout} className="hover:underline">
-                Logout ({user.email})
+              {/* Logout Icon with Tooltip */}
+              <button onClick={logout} className="relative group">
+                <LogOut
+                  size={22}
+                  className="cursor-pointer hover:text-red-500"
+                />
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                  Logout
+                </span>
               </button>
             </>
           )}
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition relative group"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-5 h-5 text-yellow-400" />
+            ) : (
+              <Moon className="w-5 h-5 text-gray-800" />
+            )}
+
+            {/* Tooltip */}
+            <span
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 
+               text-xs font-medium bg-gray-800 text-white 
+               px-2 py-1 rounded whitespace-nowrap
+               opacity-0 group-hover:opacity-100 
+               transition duration-200"
+            >
+              {theme === "dark" ? "Light Mode" : "Dark Mode"}
+            </span>
+          </button>
         </div>
       </div>
     </nav>

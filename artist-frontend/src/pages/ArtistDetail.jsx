@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ArtistDetailPage() {
   const { id } = useParams(); // artist ID
@@ -13,7 +14,7 @@ export default function ArtistDetailPage() {
       setError(null);
 
       try {
-        const res = await fetch(`https://indori-singers.onrender.com/api/artists/${id}`);
+        const res = await fetch(`http://localhost:5000/api/artists/${id}`);
 
         if (!res.ok) {
           const text = await res.text();
@@ -40,7 +41,7 @@ export default function ArtistDetailPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Main Profile */}
-      <div className="bg-white shadow rounded-lg p-6 mb-8">
+      <div className="bg-light-gradient dark:bg-dark-gradient shadow rounded-lg p-6 mb-8 transition-colors duration-300">
         <div className="flex flex-col md:flex-row gap-6">
           <img
             src={artist.image}
@@ -48,18 +49,31 @@ export default function ArtistDetailPage() {
             className="w-64 h-64 object-cover rounded-lg"
           />
           <div>
-            <h1 className="text-3xl font-bold">{artist.name}</h1>
-            <p className="text-gray-600 capitalize">{artist.category}</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {artist.name}
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 capitalize">
+              {artist.category}
+            </p>
             {artist.price && (
-              <p className="text-indigo-600 font-bold mt-2">
+              <p className="text-indigo-600 dark:text-indigo-400 font-bold mt-2">
                 ₹{artist.price}
               </p>
             )}
-            {artist.bio && <p className="mt-4 text-gray-700">{artist.bio}</p>}
+            {artist.bio && (
+              <p className="mt-4 text-gray-700 dark:text-gray-300">
+                {artist.bio}
+              </p>
+            )}
+            <Link
+              to={`/booking/${artist._id}`}
+              className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+            >
+              Book Now
+            </Link>
           </div>
         </div>
       </div>
-
       {/* Photos */}
       {artist.photos && artist.photos.length > 0 && (
         <div className="mb-8">

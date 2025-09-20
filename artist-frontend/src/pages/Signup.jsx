@@ -14,7 +14,7 @@ export default function Signup() {
     setError("");
 
     try {
-      const res = await fetch("https://indori-singers.onrender.com/api/auth/signup", {
+      const res = await fetch("http://localhost:5000/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -34,27 +34,35 @@ export default function Signup() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Signup</h2>
-      {error && <p className="text-red-500">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex justify-center items-center min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white 
+           border border-gray-300 dark:border-gray-700 
+           transition-colors duration-300 shadow-md rounded px-8 py-6 w-96"
+      >
+        <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full border rounded p-2"
+          className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-[#70d6ff]"
         />
+
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full border rounded p-2"
+          className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#70d6ff]"
         />
+
         <button
           type="submit"
-          className="w-full bg-[#70d6ff] text-white p-2 rounded"
+          className="w-full bg-[#70d6ff] hover:bg-[#5cc3eb] text-white font-semibold p-2 rounded transition-colors"
         >
           Signup
         </button>

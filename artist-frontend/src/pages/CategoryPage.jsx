@@ -15,8 +15,8 @@ export default function CategoryPage() {
       try {
         const url =
           id === "all"
-            ? "https://indori-singers.onrender.com/api/artists"
-            : `https://indori-singers.onrender.com/api/artists?category=${id}`;
+            ? "http://localhost:5000/api/artists"
+            : `http://localhost:5000/api/artists?category=${id}`;
 
         console.log("Fetching artists from:", url);
 
@@ -41,7 +41,7 @@ export default function CategoryPage() {
   }, [id]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 ">
       <h1 className="text-2xl font-bold mb-6 capitalize">
         {id === "all" ? "All" : id} Artists
       </h1>
@@ -57,7 +57,7 @@ export default function CategoryPage() {
           <Link
             key={artist._id}
             to={`/artist/${artist._id}`}
-            className="bg-white shadow rounded-lg p-4 hover:shadow-lg transition"
+            className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300 shadow rounded-lg p-4 hover:shadow-lg transition"
           >
             <img
               src={artist.image}

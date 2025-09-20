@@ -13,7 +13,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://indori-singers.onrender.com/api/auth/login", {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -23,7 +23,7 @@ export default function Login() {
 
       if (!res.ok) throw new Error(data.message || "Login failed");
 
-      // 👇 This updates context, Navbar will re-render immediately
+      // Update context and Navbar will re-render
       login(data.user, data.token);
 
       navigate("/"); // redirect to home
@@ -33,20 +33,22 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 py-6 w-96"
+        className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white 
+           border border-gray-300 dark:border-gray-700 
+           transition-colors duration-300 shadow-md rounded px-8 py-6 w-96"
       >
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
-        {error && <p className="text-red-500 mb-2">{error}</p>}
+        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-4 px-3 py-2 border rounded"
+          className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-[#70d6ff]"
           required
         />
 
@@ -55,13 +57,13 @@ export default function Login() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 px-3 py-2 border rounded"
+          className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#70d6ff]"
           required
         />
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          className="w-full bg-[#70d6ff] hover:bg-[#5cc3eb] text-white font-semibold py-2 rounded transition-colors"
         >
           Login
         </button>
