@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function ArtistDetailPage() {
   const { id } = useParams(); // artist ID
+  const navigate = useNavigate();
   const [artist, setArtist] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { token } = useAuth();
   useEffect(() => {
     const fetchArtist = async () => {
       setLoading(true);
@@ -65,15 +67,27 @@ export default function ArtistDetailPage() {
                 {artist.bio}
               </p>
             )}
-            <Link
-              to={`/booking/${artist._id}`}
-              className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
-            >
-              Book Now
-            </Link>
+
+            {/* Conditionally show booking or login */}
+            {!token ? (
+              <button
+                onClick={() => navigate("/login")}
+                className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+              >
+                Login to Book
+              </button>
+            ) : (
+              <Link
+                to={`/booking/${artist._id}`}
+                className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+              >
+                Book Now
+              </Link>
+            )}
           </div>
         </div>
       </div>
+
       {/* Photos */}
       {artist.photos && artist.photos.length > 0 && (
         <div className="mb-8">

@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+  
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +67,12 @@ export default function Login() {
         >
           Login
         </button>
+        <Link
+          to="/signup"
+          className="block text-center text-sm text-gray-600 dark:text-gray-400 mt-4 hover:underline"
+        >
+          Don't have an account? Sign up
+        </Link>
       </form>
     </div>
   );

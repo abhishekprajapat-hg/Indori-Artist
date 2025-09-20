@@ -18,8 +18,6 @@ export default function CategoryPage() {
             ? "http://localhost:5000/api/artists"
             : `http://localhost:5000/api/artists?category=${id}`;
 
-        console.log("Fetching artists from:", url);
-
         const res = await fetch(url);
 
         if (!res.ok) {

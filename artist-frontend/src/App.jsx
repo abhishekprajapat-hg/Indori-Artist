@@ -12,6 +12,7 @@ import CategoryGrid from "./pages/CategoryGrid";
 import BookingPage from "./pages/BookingPage";
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -26,13 +27,21 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/artist/:id" element={<ArtistDetail />} />
-          <Route path="/booking/:artistId" element={<BookingPage />} />
-          
+
+          {/* Booking is protected */}
+          <Route
+            path="/booking/:artistId"
+            element={
+              <ProtectedRoute>
+                <BookingPage />
+              </ProtectedRoute>
+            }
+          />
+
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
-
         <Footer />
       </div>
     </AuthProvider>

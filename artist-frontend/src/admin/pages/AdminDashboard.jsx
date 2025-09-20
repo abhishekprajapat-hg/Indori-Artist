@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, Trash2, Edit } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import AdminLogoutButton from "../../components/AdminLogoutButton";
 
 
@@ -11,7 +11,13 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = localStorage.getItem("adminToken");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!token) {
+      navigate("/admin/login"); // redirect if not logged in
+    }
+  }, [token, navigate]);
   // ----------------- BOOKINGS -----------------
   const fetchBookings = async () => {
     try {

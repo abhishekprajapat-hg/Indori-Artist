@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import logo from "../assets/Logo.png";
 import { useTheme } from "../context/ThemeContext";
 import { Moon, Sun, LogIn, UserPlus, LogOut, PlusCircle } from "lucide-react";
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout } = useAuth();
 
   const { theme, toggleTheme } = useTheme();
 
