@@ -13,7 +13,17 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5000", credentials: true }));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",   // frontend (Vite dev)
+    "http://localhost:5000",   // backend (optional, if you ever call directly)
+    "http://indorisingers.com",  // production domain
+    "https://indorisingers.com", // production with https
+    "http://api.indorisingers.com",
+    "https://api.indorisingers.com"
+  ],
+  credentials: true,
+}));
 app.use(express.json());
 
 // Routes
