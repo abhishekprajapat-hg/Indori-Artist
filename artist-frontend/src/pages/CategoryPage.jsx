@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function CategoryPage() {
   const { id } = useParams(); // category slug
@@ -39,10 +40,15 @@ export default function CategoryPage() {
   }, [id]);
 
   return (
-    <div className="container mx-auto px-4 py-8 ">
-      <h1 className="text-2xl font-bold mb-6 capitalize">
-        {id === "all" ? "All" : id} Artists
-      </h1>
+    <>
+      <Helmet>
+        <title>{id === "all" ? "All" : id} Artists - Indori Artist</title>
+        <meta name="description" content={`Browse ${id === "all" ? "all" : id} artists in Indore.`} />
+      </Helmet>
+      <div className="container mx-auto px-4 py-8 ">
+        <h1 className="text-2xl font-bold mb-6 capitalize">
+          {id === "all" ? "All" : id} Artists
+        </h1>
 
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">Error loading artists: {error}</p>}
@@ -71,5 +77,6 @@ export default function CategoryPage() {
         ))}
       </div>
     </div>
-  );
+  </>
+ );
 }

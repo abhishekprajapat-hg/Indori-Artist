@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const categories = [
   { id: "sufi-band", name: "Sufi Band", image: "./images/sufi.webp" },
@@ -22,6 +23,10 @@ const categories = [
 
 export default function CategoryGrid() {
   return (
+    <><Helmet>
+        <title>Categories - Indori Artist</title>
+        <meta name="description" content="Browse artist categories in Indore." />
+      </Helmet>
     <div className="container mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-10 text-center">
         🎭 Browse Artist Categories
@@ -46,5 +51,6 @@ export default function CategoryGrid() {
         ))}
       </div>
     </div>
-  );
+  </>
+ );
 }

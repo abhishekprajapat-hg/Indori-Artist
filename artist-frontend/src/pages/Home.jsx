@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const categories = [
   { name: "Sufi Band", slug: "sufi-band", image: "/images/sufi.webp" },
@@ -14,11 +15,16 @@ const categories = [
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center rounded-2xl shadow-lg">
-        <h1 className="text-4xl font-extrabold mb-4">
-          Find & Book Your Favorite Artists 🎶
+    <>
+      <Helmet>
+        <title>Home - Indori Artist</title>
+        <meta name="description" content="Find and book your favorite artists in Indore." />
+      </Helmet>
+      <div className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center rounded-2xl shadow-lg">
+          <h1 className="text-4xl font-extrabold mb-4">
+            Find & Book Your Favorite Artists 🎶
         </h1>
         <p className="text-lg opacity-90 mb-6">
           Singers, DJs, Rappers, Bands, Anchors & more – all in one place.
@@ -58,5 +64,6 @@ export default function HomePage() {
         ))}
       </div>
     </div>
+  </>
   );
 }

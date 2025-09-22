@@ -13,9 +13,11 @@ import BookingPage from "./pages/BookingPage";
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   return (
+    <HelmetProvider>
     <AuthProvider>
       <div className="min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors">
         <Navbar />
@@ -45,6 +47,7 @@ function App() {
         <Footer />
       </div>
     </AuthProvider>
+    </HelmetProvider>
   );
 }
 

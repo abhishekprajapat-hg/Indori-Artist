@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 export default function ArtistDetailPage() {
   const { id } = useParams(); // artist ID
@@ -41,11 +42,16 @@ export default function ArtistDetailPage() {
   if (!artist) return <p className="p-6 text-gray-500">Artist not found</p>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Main Profile */}
-      <div className="bg-light-gradient dark:bg-dark-gradient shadow rounded-lg p-6 mb-8 transition-colors duration-300">
-        <div className="flex flex-col md:flex-row gap-6">
-          <img
+    <>
+      <Helmet>
+        <title>{artist.name} - Indori Artist</title>
+        <meta name="description" content={`View details for ${artist.name}.`} />
+      </Helmet>
+      <div className="container mx-auto px-4 py-8">
+        {/* Main Profile */}
+        <div className="bg-light-gradient dark:bg-dark-gradient shadow rounded-lg p-6 mb-8 transition-colors duration-300">
+          <div className="flex flex-col md:flex-row gap-6">
+            <img
             src={artist.image}
             alt={artist.name}
             className="w-64 h-64 object-cover rounded-lg"
@@ -122,5 +128,6 @@ export default function ArtistDetailPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

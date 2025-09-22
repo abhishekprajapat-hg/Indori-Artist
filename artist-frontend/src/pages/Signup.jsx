@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -47,10 +48,15 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white 
+    <>
+      <Helmet>
+        <title>Sign Up - Indori Artist</title>
+        <meta name="description" content="Create a new account on Indori Artist." />
+      </Helmet>
+      <div className="flex justify-center items-center min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-light-gradient text-black dark:bg-dark-gradient dark:text-white 
            border border-gray-300 dark:border-gray-700 
            transition-colors duration-300 shadow-md rounded px-8 py-6 w-96"
       >
@@ -122,5 +128,6 @@ export default function Signup() {
         </Link>
       </form>
     </div>
+    </>
   );
 }

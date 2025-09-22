@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Helmet } from "react-helmet-async";
   
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -33,6 +34,10 @@ export default function Login() {
   };
 
   return (
+    <><Helmet>
+        <title>Login - Indori Artist</title>
+        <meta name="description" content="Login to your Indori Artist account." />
+      </Helmet>
     <div className="flex justify-center items-center min-h-screen bg-light-gradient text-black dark:bg-dark-gradient dark:text-white transition-colors duration-300">
       <form
         onSubmit={handleSubmit}
@@ -75,5 +80,6 @@ export default function Login() {
         </Link>
       </form>
     </div>
+  </>
   );
 }

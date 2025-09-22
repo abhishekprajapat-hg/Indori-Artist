@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function ArtistForm() {
   const [name, setName] = useState("");
@@ -76,11 +77,16 @@ export default function ArtistForm() {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-light-gradient dark:bg-dark-gradient p-6 rounded-lg shadow">
-      <h1 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Add Artist</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
+    <>
+      <Helmet>
+        <title>Add Artist - Indori Artist</title>
+        <meta name="description" content="Add a new artist to the Indori Artist platform." />
+      </Helmet>
+      <div className="max-w-lg mx-auto bg-light-gradient dark:bg-dark-gradient p-6 rounded-lg shadow">
+        <h1 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Add Artist</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
           placeholder="Name"
           className="w-full p-2 border rounded 
                      bg-gray-50 dark:bg-gray-700 
@@ -179,5 +185,6 @@ export default function ArtistForm() {
         </button>
       </form>
     </div>
+  </>
   );
 }
