@@ -1,23 +1,23 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { Helmet } from "react-helmet-async";
+import {  FaWhatsapp } from "react-icons/fa";
 
 export default function ArtistDetailPage() {
   const { id } = useParams(); // artist ID
-  const navigate = useNavigate();
   const [artist, setArtist] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { token } = useAuth();
   useEffect(() => {
     const fetchArtist = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/artists/${id}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/artists/${id}`
+        );
 
         if (!res.ok) {
           const text = await res.text();
@@ -47,87 +47,87 @@ export default function ArtistDetailPage() {
         <title>{artist.name} - Indori Artist</title>
         <meta name="description" content={`View details for ${artist.name}.`} />
       </Helmet>
+
       <div className="container mx-auto px-4 py-8">
         {/* Main Profile */}
         <div className="bg-light-gradient dark:bg-dark-gradient shadow rounded-lg p-6 mb-8 transition-colors duration-300">
           <div className="flex flex-col md:flex-row gap-6">
             <img
-            src={artist.image}
-            alt={artist.name}
-            className="w-64 h-64 object-cover rounded-lg"
-          />
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-              {artist.name}
-            </h1>
-            <p className="text-gray-600 dark:text-gray-300 capitalize">
-              {artist.category}
-            </p>
-            {artist.price && (
-              <p className="text-indigo-600 dark:text-indigo-400 font-bold mt-2">
-                ₹{artist.price}
+              src={artist.image}
+              alt={artist.name}
+              className="w-64 h-64 object-cover rounded-lg"
+            />
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                {artist.name}
+              </h1>
+              <p className="text-gray-600 dark:text-gray-300 capitalize">
+                {artist.category}
               </p>
-            )}
-            {artist.bio && (
-              <p className="mt-4 text-gray-700 dark:text-gray-300">
-                {artist.bio}
-              </p>
-            )}
+              {artist.price && (
+                <p className="text-indigo-600 dark:text-indigo-400 font-bold mt-2">
+                  ₹{artist.price}
+                </p>
+              )}
+              {artist.bio && (
+                <p className="mt-4 text-gray-700 dark:text-gray-300">
+                  {artist.bio}
+                </p>
+              )}
 
-            {/* Conditionally show booking or login */}
-            {!token ? (
-              <button
-                onClick={() => navigate("/login")}
-                className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-              >
-                Login to Book
-              </button>
-            ) : (
+              {/* Booking button (visible to everyone) */}
               <Link
                 to={`/booking/${artist._id}`}
                 className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
               >
                 Book Now
               </Link>
-            )}
+              <Link
+                to="https://wa.me/918349523485"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition ml-2"
+              >
+                 WhatsApp 
+              </Link>
+            </div>
           </div>
         </div>
+
+        {/* Photos */}
+        {artist.photos && artist.photos.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold mb-4">Photos</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {artist.photos.map((photo, idx) => (
+                <img
+                  key={idx}
+                  src={photo}
+                  alt={`Photo ${idx + 1}`}
+                  className="w-full h-48 object-cover rounded-lg shadow"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Videos */}
+        {artist.videos && artist.videos.length > 0 && (
+          <div>
+            <h2 className="text-xl font-semibold mb-4">Videos</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {artist.videos.map((video, idx) => (
+                <video
+                  key={idx}
+                  src={video}
+                  controls
+                  className="w-full rounded-lg shadow"
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Photos */}
-      {artist.photos && artist.photos.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Photos</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {artist.photos.map((photo, idx) => (
-              <img
-                key={idx}
-                src={photo}
-                alt={`Photo ${idx + 1}`}
-                className="w-full h-48 object-cover rounded-lg shadow"
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Videos */}
-      {artist.videos && artist.videos.length > 0 && (
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Videos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {artist.videos.map((video, idx) => (
-              <video
-                key={idx}
-                src={video}
-                controls
-                className="w-full rounded-lg shadow"
-              />
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
     </>
   );
 }

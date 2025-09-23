@@ -1,14 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import logo from "../assets/Logo.png";
 import { useTheme } from "../context/ThemeContext";
-import { Moon, Sun, LogIn, UserPlus, LogOut, PlusCircle } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
 export default function Navbar() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { user, logout } = useAuth();
-
+  const [isDropdownOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -20,45 +17,8 @@ export default function Navbar() {
           <span className="font-bold text-xl">Indori Singers</span>
         </Link>
 
-        {/* Right Section */}
+        {/* Right Section: Theme Toggle Only */}
         <div className="flex items-center space-x-6">
-          {!user ? (
-            <>
-              {/* Login Icon with Tooltip */}
-              <Link to="/login" className="relative group">
-                <LogIn size={22} className="cursor-pointer" />
-                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                  Login
-                </span>
-              </Link>
-
-              {/* Signup Icon with Tooltip */}
-              <Link to="/signup" className="relative group">
-                <UserPlus size={22} className="cursor-pointer" />
-                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                  Signup
-                </span>
-              </Link>
-            </>
-          ) : (
-            <>
-              {/* Add Artist */}
-              
-
-              {/* Logout Icon with Tooltip */}
-              <button onClick={logout} className="relative group">
-                <LogOut
-                  size={22}
-                  className="cursor-pointer hover:text-red-500"
-                />
-                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                  Logout
-                </span>
-              </button>
-            </>
-          )}
-
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition relative group"

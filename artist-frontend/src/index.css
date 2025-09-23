@@ -1,8 +1,12 @@
 @import "react-datepicker/dist/react-datepicker.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* If not using Tailwind CLI or PostCSS, import the compiled Tailwind CSS instead */
+@import "tailwindcss/base.css";
+@import "tailwindcss/components.css";
+@import "tailwindcss/utilities.css";
 
 /* optional global styles */
-body { @apply bg-gray-100 text-gray-800; }
+body {
+  background-color: #f3f4f6; /* Tailwind bg-gray-100 */
+  color: #1f2937;           /* Tailwind text-gray-800 */
+}
