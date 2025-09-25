@@ -9,6 +9,7 @@ const artistSchema = new mongoose.Schema(
     photos: [{ type: String }], // array of photo URLs
     videos: [{ type: String }], // array of video URLs
     price: { type: Number }, // optional
+    order: { type: Number, default: 0 }, 
   },
   { timestamps: true }
 );

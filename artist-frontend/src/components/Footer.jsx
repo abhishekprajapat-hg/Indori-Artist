@@ -42,10 +42,34 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/add-artist"
+                to="/about"
                 className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
               >
-                Add Artist
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+              >
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="mailto:indorisingers@gmail.com"
+                className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+              >
+                Support
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="tel:+917804996135"
+                className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+              >
+                Phone
               </Link>
             </li>
           </ul>
@@ -55,16 +79,13 @@ export default function Footer() {
         <div>
           <h3 className="text-gray-900 dark:text-white font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4 text-xl">
-            <a href="#" className="hover:text-blue-500 transition">
+            <a href="https://www.instagram.com/indori_singers?utm_source=qr&igsh=bjdsdDVwbzl0Z2xn" className="hover:text-blue-500 transition">
               <FaFacebook />
             </a>
-            <a href="#" className="hover:text-pink-500 transition">
+            <a href="https://www.instagram.com/indori_singers?utm_source=qr&igsh=bjdsdDVwbzl0Z2xn" className="hover:text-pink-500 transition">
               <FaInstagram />
             </a>
-            <a href="#" className="hover:text-sky-400 transition">
-              <FaTwitter />
-            </a>
-            <a href="#" className="hover:text-red-500 transition">
+            <a href="https://youtu.be/u4w5Ismml10?si=fpZq9q7TondCD8oy" className="hover:text-red-500 transition">
               <FaYoutube />
             </a>
           </div>

@@ -12,8 +12,11 @@ import CategoryGrid from "./pages/CategoryGrid";
 import BookingPage from "./pages/BookingPage";
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { HelmetProvider } from "react-helmet-async";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import BookingsPage from "./admin/pages/BookingsPage";
+import ArtistsPage from "./admin/pages/ArtistsPage";
 
 function App() {
   return (
@@ -29,6 +32,8 @@ function App() {
           {/* <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} /> */}
           <Route path="/artist/:id" element={<ArtistDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* Booking is protected */}
           <Route path="/booking/:artistId" element={<BookingPage />} />
@@ -37,6 +42,9 @@ function App() {
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard/bookings" element={<BookingsPage />} />
+          <Route path="/admin/dashboard/artists" element={<ArtistsPage />} />
+
         </Routes>
         <Footer />
       </div>
